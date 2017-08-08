@@ -1,0 +1,23 @@
+﻿@model Medic.Models.User
+
+@{
+    ViewBag.Title = "Изменение прав";
+}
+
+<h2> Изменение прав для пользователя @ViewBag.User.Name</h2>
+
+
+@using (Html.BeginForm())
+{
+        @Html.Label("PermissionId", "Выберите права")
+        @Html.DropDownList("PermissionId", ViewBag.List as SelectList)
+        <input type="hidden" value="@ViewBag.User.UserId" name="UserId" />
+        <br />
+        <input type="submit" value="Изменить" class="btn btn-default" />
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

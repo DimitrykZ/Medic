@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Просмотр организаций";
+}
+
+<h2>Просмотр организаций</h2>
+
+<table class="table">
+    <tr>
+        <th>@Html.Label("Наименование организации")</th>
+        <th>@Html.Label("Место  расположения")</th>
+    </tr>
+    @foreach (Medic.Models.Organization org in ViewBag.Org)
+    {
+        string ter = ViewBag.Territories.Find(org.TerritoryId).Name;
+    <tr>
+        <td>@Html.DisplayFor(orgItem=>org.Name)</td>
+        <td>@Html.Label(ter)</td>
+    </tr>
+    }
+ </table>
+

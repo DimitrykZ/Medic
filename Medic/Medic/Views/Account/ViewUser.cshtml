@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Medic.Models.User>
+
+@{
+    ViewBag.Title = "Просмотр пользователей";
+}
+
+<h2>Просмотр пользователей</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Аккаунт")
+        </th>
+        <th>
+            @Html.DisplayName("Почта")
+        </th>
+        <th>
+            @Html.DisplayName("ФИО")
+        </th>
+        <th>
+            @Html.DisplayName("Организация")
+        </th>
+        <th>
+            @Html.DisplayName("Права пользователя")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    string Perm = ViewBag.Permission.Find(item.PermissionId).PerName;
+    string Org = ViewBag.Organization.Find(item.OrganizationId).Name;
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Org)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Perm)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить права", "Change", "Account", new { UserId = item.UserId }, null);
+        </td>
+
+    </tr>
+}
+
+</table>
